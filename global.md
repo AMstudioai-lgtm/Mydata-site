@@ -40,8 +40,13 @@ fond `#1E1E1E`, panneau `#252526`, accent `#007ACC`, bordure `#2D2D2D`, sélecti
 
 ## Module / étape en cours
 
-**Étape 1 — Initialisation (fait)** : sauvegarde Git, repo GitHub, push, Codespace opérationnel.
-**Étape 2 — Export statique Next.js → GitHub Pages (EN COURS)**.
+**Étape 1 — Initialisation : TERMINÉE**
+- Sauvegarde Git du travail existant (16 fichiers, commit `e11df58`)
+- Repo GitHub `AMstudioai-lgtm/Mydata-site` (public, branche `main`)
+- Codespace `mydata-site-5vvq7xqqw5jvc4797` (Node 20, npm 10)
+- `npm ci` + `npm run build` exécutés et verts DANS le Codespace
+
+**Étape 2 — Export statique Next.js → GitHub Pages : EN COURS**
 
 ## Modules en attente (roadmap)
 
