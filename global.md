@@ -3,13 +3,12 @@
 ## Description du projet
 
 Site vitrine statique pour **Mydata**, application Android de bases de données locales
-et de tableaux personnalisés (repo : [AMstudioai-lgtm/Mydata](https://github.com/AMstudioai-lgtm/Mydata)).
+et de tableaux personnalisés ([AMstudioai-lgtm/Mydata](https://github.com/AMstudioai-lgtm/Mydata)).
 
 - **Audience** : grand public francophone
-- **Objectif** : découverte de l'app + téléchargement de l'APK via GitHub Releases
-- **URL cible** : `https://amstudioai-lgtm.github.io/Mydata-site/`
+- **URL en ligne** : https://amstudioai-lgtm.github.io/Mydata-site/
 - **Repo du site** : `AMstudioai-lgtm/Mydata-site` (public)
-- **Environnement de travail** : Codespace `mydata-site-5vvq7xqqw5jvc4797`
+- **Environnement de travail** : Codespace `mydata-site-5vvq7xqqw5jvc4797` (100 % du travail)
 
 ## Technologies retenues
 
@@ -17,58 +16,46 @@ et de tableaux personnalisés (repo : [AMstudioai-lgtm/Mydata](https://github.co
 |---|---|
 | Next.js 16.4 (App Router, export statique) | Framework site |
 | Tailwind CSS 4 | Styling |
-| GitHub Pages | Hébergement (gratuit) |
-| GitHub Releases | Distribution APK (déjà en place côté app) |
+| GitHub Pages (workflow Actions) | Hébergement |
+| GitHub Releases | Distribution APK (côté app) |
 
-Palette fidèle à l'app (`ui/theme/Color.kt`) :
-fond `#1E1E1E`, panneau `#252526`, accent `#007ACC`, bordure `#2D2D2D`, sélection `#094771`.
+Palette fidèle à l'app : fond `#1E1E1E`, panneau `#252526`, accent `#007ACC`,
+bordure `#2D2D2D`, sélection `#094771`.
 
-## Règles de design validées (consolidées)
+## Règles de design validées
 
-- Sombre fidèle à l'app, minimaliste et stylé (sans skill imposé)
-- Titres sans-serif très serrés, air généreux, bordures fines 1px, ombres quasi nulles
+- Sombre fidèle à l'app, minimaliste et stylé
+- Titres très serrés, air généreux, bordures fines 1px, ombres quasi nulles
 - Un seul accent (bleu app) — couleur rare donc visible
-- Zéro emoji, zéro tracker, zéro cookie
-- Mockups CSS du tableau Mydata (pas de captures d'écran)
+- Zéro emoji, zéro tracker, zéro cookie ; mockups CSS (pas de captures)
 
-## Cas limites traités
+## Livré (2026-10-17) — tout en ligne
 
-- Aucun numéro de version affiché en dur → lien `releases/latest`
-- basePath `/Mydata-site` pour tous les liens internes
-- Guide d'installation APK (Android bloque le hors-Play-Store)
-- `cacheComponents` incompatible export statique → à vérifier contre la doc locale Next 16.4
+- Export statique : `output: "export"`, `basePath: /Mydata-site`, `trailingSlash`, images non optimisées
+- `robots.txt` en `force-static` ; `cacheComponents` désactivé (incompatible export)
+- Piège basePath corrigé via constantes de `src/lib/links.ts` (logo, OG absolue)
+- Design/sections : `Mockup` (maquette CSS tableau + détail de ligne), `Privacy`,
+  `Faq` (accordéons sans box), `Download` avec étapes `<kbd>`, `Reveal` au scroll
+  (IntersectionObserver, cascade 80 ms, reduced-motion respecté, fallback `<noscript>`)
+- Typographie : DM Sans (app) + JetBrains Mono (labels techniques, `<font-mono>`)
+- SEO : canonical, sitemap.xml, favicon, `not-found` custom, OG absolus
+- QA : `scripts/check-links.mjs` (bases internes + fichiers manquants) — vert en CI
+- Déployé : workflow `deploy.yml` → artefact `out/` → `deploy-pages@v4`
 
-## Module / étape en cours
+## Vérifications en ligne (curl, 200)
 
-**Étape 1 — Initialisation : TERMINÉE**
-- Sauvegarde Git du travail existant (16 fichiers, commit `e11df58`)
-- Repo GitHub `AMstudioai-lgtm/Mydata-site` (public, branche `main`)
-- Codespace `mydata-site-5vvq7xqqw5jvc4797` (Node 20, npm 10)
-- Deploy key codespace → repo en lecture/écriture (id 166765541)
+`/`, `/robots.txt`, `/sitemap.xml`, `/404.html`
 
-**Étape 2 — Export statique Next.js → GitHub Pages : TERMINÉE**
-- `output: "export"`, `basePath: /Mydata-site`, `trailingSlash: true`, `images.unoptimized`
-- `robots.txt` : `export const dynamic = "force-static"` requis en mode export
-- `cacheComponents`/`partialPrefetching` (PPR) désactivés : incompatibles export statique
-- Piège basePath corrigé : logo header + images OG via constantes de `src/lib/links.ts`
-- Build à distance dans le Codespace : vert, sortie vérifiée (og:image absolue, assets préfixés)
+## Protocole de travail (100 % à distance)
 
-## Protocole de travail (maintenu)
+- Tous les édits, builds, tests, commits et pushs passent par le Codespace
+- Accès: `gh codespace ssh -c mydata-site-5vvq7xqqw5jvc4797`
+- Push: deploy key du Codespace (lecture/écriture) — pas de token exposé
+- Réseau de l'appareil instable : réessaies avec 2 tentatives espacées
 
-- Appareil de l'utilisateur : Android/Termux, stockage limité → aucun build local
-- Édits de code : côté local (littéral, quelques Ko) → commit + push HTTPS via `gh`
-- Builds/tests : À DISTANCE, `gh codespace ssh -c mydata-site-5vvq7xqqw5jvc4797`
-- Attention réseau : EOF aléatoires → réessayeur (2 tentatives espacées fonctionnent)
-- Env codespace en SSH brut : ni `GITHUB_TOKEN` ni `gh auth` — mais push OK via sa deploy key
+## Modules en attente (backlog)
 
-## Modules en attente (roadmap)
-
-1. Export statique (`output: "export"`, basePath, trailingSlash, images unoptimized) + build vert
-2. Fidélité typographique & tokens (tracking, mono, kbd)
-3. Mockups CSS : tableau + détail de ligne
-4. Sections manquantes : Installation, Confidentialité, FAQ
-5. Micro-animations (reveal, cascade, reduced-motion)
-6. SEO : metadata, OG, sitemap, favicon, 404
-7. QA : `next build` + script de vérification des liens de l'HTML exporté
-8. Déploiement : workflow GitHub Pages → test URL en ligne
-9. (Backlog) Version EN, badge dynamique releases via API GitHub
+1. (polissage) Nettoyage visuel post-retour utilisateur — retours à intégrer
+2. (backlog) Badge dynamique "dernière version" via API GitHub fetch côté client
+3. (backlog) Version EN complète (sous `/en/`)
+4. (app) OpenGraph image générée (1200×630) à la place du logo carré
