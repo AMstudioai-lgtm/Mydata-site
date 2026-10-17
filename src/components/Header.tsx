@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { RELEASES_URL } from "@/lib/links";
+import { RELEASES_URL, SITE_BASE } from "@/lib/links";
 
 const LINKS = [
   { href: "#fonctionnalites", label: "Fonctionnalités" },
@@ -19,7 +19,7 @@ export default function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-[72px] md:px-8">
         <Link href="#haut" className="flex items-center gap-3">
           <Image
-            src="/logo.png"
+            src={`${SITE_BASE}/logo.png`}
             alt="Logo Mydata"
             width={32}
             height={32}
