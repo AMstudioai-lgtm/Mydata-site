@@ -11,8 +11,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   // Le loader d'images par défaut exige un serveur Node → images servies telles quelles
   images: { unoptimized: true },
-  cacheComponents: true,
-  partialPrefetching: true,
+  // cacheComponents/PPR incompatible avec export statique et route-segment-config → désactivés
   turbopack: {
     rules: {
       "*.css": {
