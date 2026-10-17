@@ -12,6 +12,9 @@ export default function Footer() {
           <a href={REPO_URL} className="transition-colors hover:text-ink">
             Code source
           </a>
+          <a href="#faq" className="transition-colors hover:text-ink">
+            FAQ
+          </a>
           <a href="#haut" className="transition-colors hover:text-ink">
             Haut de page
           </a>

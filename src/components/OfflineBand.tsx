@@ -1,3 +1,10 @@
+const STATS: Array<[string, string]> = [
+  ["100 %", "hors-ligne"],
+  ["4", "types de colonnes"],
+  ["0", "compte obligatoire"],
+  ["∞", "tables locales"],
+];
+
 export default function OfflineBand() {
   return (
     <section aria-label="Hors-ligne" className="border-b border-line">
@@ -11,6 +18,14 @@ export default function OfflineBand() {
           connexion. La synchronisation n&apos;existe que si vous créez un
           compte.
         </p>
+        <dl className="mt-10 grid grid-cols-2 gap-px border border-line bg-line md:grid-cols-4">
+          {STATS.map(([v, l]) => (
+            <div key={l} className="flex flex-col bg-panel p-6">
+              <dd className="text-3xl font-bold tracking-tight text-ink">{v}</dd>
+              <dt className="mt-1 text-sm text-ink2">{l}</dt>
+            </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

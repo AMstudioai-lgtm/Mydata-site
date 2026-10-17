@@ -9,6 +9,7 @@ const LINKS = [
   { href: "#fonctionnalites", label: "Fonctionnalités" },
   { href: "#prise-en-main", label: "Prise en main" },
   { href: "#synchronisation", label: "Synchronisation" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export default function Header() {

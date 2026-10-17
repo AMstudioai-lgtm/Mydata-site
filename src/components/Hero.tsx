@@ -1,4 +1,5 @@
 import { RELEASES_URL, REPO_URL } from "@/lib/links";
+import Mockup from "./Mockup";
 
 export default function Hero() {
   return (
@@ -28,21 +29,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="md:col-span-5">
-          <dl className="grid grid-cols-2 gap-px border border-line bg-line">
-            {[
-              ["100 %", "hors-ligne"],
-              ["4", "types de colonnes"],
-              ["0", "compte obligatoire"],
-              ["∞", "tables locales"],
-            ].map(([v, l]) => (
-              <div key={l} className="flex flex-col bg-panel p-6">
-                <dd className="text-3xl font-bold tracking-tight text-ink">
-                  {v}
-                </dd>
-                <dt className="mt-1 text-sm text-ink2">{l}</dt>
-              </div>
-            ))}
-          </dl>
+          <Mockup />
         </div>
       </div>
     </section>

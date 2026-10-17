@@ -1,3 +1,5 @@
+import Reveal from "@/lib/Reveal";
+
 const POINTS = [
   "Créez un compte depuis les paramètres de l'application.",
   "Appuyez sur « Synchroniser maintenant » pour envoyer vos tables en ligne.",
@@ -13,9 +15,11 @@ export default function Sync() {
     >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-12 md:px-8 md:py-24">
         <div className="md:col-span-7">
-          <h2 className="max-w-xl text-3xl font-bold tracking-tighter md:text-5xl">
-            Vos données vous suivent, si vous le décidez.
-          </h2>
+          <Reveal>
+            <h2 className="max-w-xl text-3xl font-bold tracking-tighter md:text-5xl">
+              Vos données vous suivent, si vous le décidez.
+            </h2>
+          </Reveal>
           <p className="mt-4 max-w-[60ch] text-base leading-relaxed text-ink2">
             La synchronisation n&apos;envoie que les modifications. En cas de
             conflit, la version la plus récente gagne. Chaque compte reste
@@ -28,8 +32,12 @@ export default function Sync() {
               key={p}
               className="border-t border-line py-4 text-sm leading-relaxed text-ink2 last:border-b"
             >
-              <span className="mr-3 font-bold text-ink">{i + 1}.</span>
-              {p}
+              <Reveal className="flex" index={i}>
+                <span className="mr-3 font-mono font-bold text-ink">
+                  {i + 1}.
+                </span>
+                <span className="max-w-[52ch]">{p}</span>
+              </Reveal>
             </li>
           ))}
         </ol>

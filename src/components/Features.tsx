@@ -1,3 +1,5 @@
+import Reveal from "@/lib/Reveal";
+
 const CELLS = [
   {
     title: "Colonnes sur mesure",
@@ -7,7 +9,7 @@ const CELLS = [
   },
   {
     title: "Totaux automatiques",
-    body: "Somme et moyenne calculées en bas de chaque colonne numérique.",
+    body: "Somme et moyenne calculées en bas de chaque colonne numérique, en dollars ou en pourcentages.",
     span: "md:col-span-5",
     tint: "bg-sel",
   },
@@ -33,17 +35,21 @@ export default function Features() {
       className="border-b border-line"
     >
       <div className="mx-auto max-w-7xl px-4 py-16 md:px-8 md:py-24">
-        <h2 className="max-w-xl text-3xl font-bold tracking-tighter md:text-5xl">
-          Un tableur simple, pensé pour durer.
-        </h2>
+        <Reveal>
+          <h2 className="max-w-xl text-3xl font-bold tracking-tighter md:text-5xl">
+            Un tableur simple, pensé pour durer.
+          </h2>
+        </Reveal>
         <div className="mt-10 grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-12">
-          {CELLS.map((c) => (
-            <article key={c.title} className={`${c.span} ${c.tint} p-6 md:p-8`}>
-              <h3 className="text-xl font-bold tracking-tight">{c.title}</h3>
-              <p className="mt-2 max-w-[55ch] text-sm leading-relaxed text-ink2">
-                {c.body}
-              </p>
-            </article>
+          {CELLS.map((c, i) => (
+            <Reveal key={c.title} className={`${c.span} ${c.tint}`} index={i}>
+              <article className="h-full p-6 md:p-8">
+                <h3 className="text-xl font-bold tracking-tight">{c.title}</h3>
+                <p className="mt-2 max-w-[55ch] text-sm leading-relaxed text-ink2">
+                  {c.body}
+                </p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

@@ -1,11 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
 import { OG_LOGO_URL } from "@/lib/links";
 import "./globals.css";
 
 const dmSans = DM_Sans({
   subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
@@ -38,6 +45,9 @@ export const metadata: Metadata = {
     images: [OG_LOGO_URL],
   },
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://amstudioai-lgtm.github.io/Mydata-site/",
+  },
 };
 
 export const viewport: Viewport = {
@@ -50,8 +60,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" className={dmSans.className}>
+    <html lang="fr" className={`${dmSans.className} ${jetbrainsMono.variable}`}>
       <body className="min-h-full bg-void text-ink antialiased">
+        <noscript>
+          <style>{".reveal{opacity:1 !important;transform:none !important}"}</style>
+        </noscript>
         {children}
       </body>
     </html>
