@@ -64,13 +64,6 @@ function StarIcon({ size = 13 }: { size?: number }) {
     </svg>
   );
 }
-function StarOutline() {
-  return (
-    <svg viewBox="0 0 16 16" width={13} height={13} aria-hidden>
-      <path d="M8 1.6l2 4.1 4.5.6-3.2 3.2.75 4.5L8 11.8l-4.05 2.2.75-4.5L1.5 6.3 6 5.7z" fill="none" stroke={ACCENT} strokeWidth={1.2} />
-    </svg>
-  );
-}
 function KebabIcon() {
   return (
     <svg viewBox="0 0 16 16" width={14} height={14} aria-hidden>
@@ -106,14 +99,6 @@ function SearchIcon() {
     </svg>
   );
 }
-function CalendarIcon() {
-  return (
-    <svg viewBox="0 0 14 14" width={13} height={13} style={ICON} aria-hidden>
-      <rect x="1.5" y="2.5" width="11" height="10" rx="1.4" fill="none" stroke={INK3} strokeWidth={1.2} />
-      <path d="M1.5 5.4h11M4.4 1.2v2.4M9.6 1.2v2.4" stroke={INK3} strokeWidth={1.2} />
-    </svg>
-  );
-}
 function CalcIcon() {
   return (
     <svg viewBox="0 0 14 14" width={13} height={13} style={ICON} aria-hidden>
@@ -134,6 +119,10 @@ const ROWS = [
   { nom: "AirPods Pro", montant: "249", statut: "Long" },
   { nom: "Écran 27 pouces", montant: "189.99", statut: "Short" },
   { nom: "Licence design", montant: "200", statut: "" },
+  { nom: "Clavier mécanique", montant: "149.99", statut: "Long" },
+  { nom: "Souris ergonomique", montant: "89", statut: "Short" },
+  { nom: "Tapis de bureau", montant: "45", statut: "" },
+  { nom: "Chaise de bureau", montant: "261", statut: "Long" },
 ];
 
 function Row({ r, i }: { r: (typeof ROWS)[number]; i: number }) {
@@ -190,7 +179,7 @@ function Row({ r, i }: { r: (typeof ROWS)[number]; i: number }) {
 }
 
 export default function Mockup() {
-  const visibleValue = "638.99";
+  const visibleValue = "1183.98";
   return (
     <div
       aria-label="Aperçu fidèle de l'application Android Mydata"
@@ -199,26 +188,46 @@ export default function Mockup() {
       {/* Cadre téléphone */}
       <div
         style={{
-          borderRadius: 30,
-          border: "7px solid #101010",
+          borderRadius: 38,
+          border: "10px solid #101010",
           outline: "1px solid #2D2D2D",
           overflow: "hidden",
           background: BG,
+          boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.5)",
+          position: "relative",
         }}
       >
+        {/* Caméra poinçon (punch hole) */}
+        <div
+          style={{
+            position: "absolute",
+            top: 8,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: 12,
+            height: 12,
+            borderRadius: "50%",
+            background: "#000000",
+            border: "1px solid #1a1a1a",
+            zIndex: 10,
+          }}
+        />
+
         {/* Barre système Android */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "5px 14px",
+            padding: "8px 16px 4px 16px",
             color: INK2,
             fontSize: 11,
+            position: "relative",
+            zIndex: 1,
           }}
         >
-          <span>16:12</span>
-          <span style={{ display: "flex", gap: 4, alignItems: "center" }}>
+          <span style={{ fontWeight: 600 }}>16:12</span>
+          <span style={{ display: "flex", gap: 5, alignItems: "center" }}>
             <svg width={11} height={11} viewBox="0 0 12 12" aria-hidden>
               <path d="M1.5 9.5L6 5l4.5 4.5M3 11L6 8l3 3" fill="none" stroke={INK2} strokeWidth={1} />
             </svg>
@@ -268,7 +277,7 @@ export default function Mockup() {
           </span>
           <span style={{ marginLeft: 10, fontSize: 16, fontWeight: 600, color: INK }}>mes-choses</span>
           <span style={{ marginLeft: 6, display: "flex" }}><PencilIcon color={INK2} /></span>
-          <span style={{ marginLeft: 4, fontSize: 12, color: INK3 }}>(3 lignes)</span>
+          <span style={{ marginLeft: 4, fontSize: 12, color: INK3 }}>(7 lignes)</span>
           <span style={{ marginLeft: "auto", display: "flex" }}><TrashIcon size={18} /></span>
         </div>
 
@@ -334,7 +343,7 @@ export default function Mockup() {
                     <span style={{ fontSize: 11, color: INK3 }}>—</span>
                   </div>
                   <div style={{ width: 52, height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: INK3, fontSize: 11, fontWeight: 500 }}>
-                    3
+                    7
                   </div>
                 </div>
               </div>
@@ -342,7 +351,7 @@ export default function Mockup() {
           </div>
         </div>
 
-        {/* Barre de commandes : [Properté | + Ligne] */}
+        {/* Barre de commandes : [Propriété | + Ligne] */}
         <div
           style={{
             display: "flex",
@@ -368,7 +377,7 @@ export default function Mockup() {
         </div>
 
         {/* Zone de navigation Android */}
-        <div style={{ display: "flex", justifyContent: "center", padding: "6px 0 8px" }}>
+        <div style={{ display: "flex", justifyContent: "center", padding: "6px 0 10px" }}>
           <span style={{ width: 84, height: 4, borderRadius: 999, background: "rgba(255,255,255,0.25)" }} />
         </div>
       </div>
